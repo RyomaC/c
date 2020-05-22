@@ -1,0 +1,38 @@
+{
+  "pageSize": 15,
+  "fields": [
+    {
+      "name": "clientid",
+      "title": "clientid",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "ipaddress",
+      "title": "ipaddress",      
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "ts",
+      "title": "ts",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "username",
+      "title": "username",
+      "dataType": "string",
+      "editType": "textbox"
+    },  
+    {
+      "name": "dis_ts",
+      "title": "dis_ts",
+      "dataType": "string",
+      "editType": "textbox"
+    }
+  ],
+  "searchFields": [
+    "clientid"
+  ]
+}

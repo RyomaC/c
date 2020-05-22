@@ -1,0 +1,642 @@
+{
+  "table": "device",
+  "fields": [
+    {
+      "name": "UUID",
+      "title": "UUID",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 250
+    },
+    {
+      "name": "NAME",
+      "title": "名称",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 150
+    },
+    {
+      "name": "TYPE",
+      "title": "类型",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100,
+      "default": "1"
+    },
+    {
+      "name": "LNG",
+      "title": "经度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+    {
+      "name": "LAT",
+      "title": "纬度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+    {
+      "name": "PROJECT",
+      "title": "项目",
+      "dataType": "string",
+      "editType": "select",
+      "width": 400,
+      "option": "project"
+    },
+    {
+      "name": "ts_mqtt",
+      "title": "汇报时间",
+      "dataType": "timestamp",
+      "editType": "datetime",
+      "width": 110
+    },    
+    {
+      "name": "Total_rated_power",
+      "title": "总额定功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Version",
+      "title": "版本号",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "FirDimming",
+      "title": "主灯亮度值",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "SecDimming",
+      "title": "副灯亮度值",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "FirIllu",
+      "title": "主路面照度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "SecIllu",
+      "title": "辅路面照度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Rel_State",
+      "title": "继电器状态",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Time",
+      "title": "时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Gprs_csq",
+      "title": "信号强度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Illu",
+      "title": "环境照度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Confirm",
+      "title": "指令码",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "A_v",
+      "title": "A相电压",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "B_v",
+      "title": "B相电压",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "C_v",
+      "title": "C相电压",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "A_c",
+      "title": "A相电流",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "B_c",
+      "title": "B相电流",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "C_c",
+      "title": "C相电流",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Frequency",
+      "title": "频率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Tot_p_fac",
+      "title": "总功率因数",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Tot_view_p",
+      "title": "总视在功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Tot_act_deg",
+      "title": "总有功电度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Tot_react_deg",
+      "title": "总无功电度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "A_act_p",
+      "title": "A相有功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "B_act_p",
+      "title": "B相有功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "C_act_p",
+      "title": "C相有功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Tot_act_p",
+      "title": "总有功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "A_react_p",
+      "title": "A相无功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "B_react_p",
+      "title": "B相无功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "C_react_p",
+      "title": "C相无功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Tot_react_p",
+      "title": "总无功功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Dimming",
+      "title": "全局亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Temp",
+      "title": "温度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Loop_num",
+      "title": "回路数",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fir_tt_Sec",
+      "title": "副灯第一段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fir_tp_Sec",
+      "title": "副灯第一段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Sec_tt_Sec",
+      "title": "副灯第二段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Sec_tp_Sec",
+      "title": "副灯第二段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Thir_tt_Sec",
+      "title": "副灯第三段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Thir_tp_Sec",
+      "title": "副灯第三段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Four_tt_Sec",
+      "title": "副灯第四段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Four_tp_Sec",
+      "title": "副灯第四段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fif_tt_Sec",
+      "title": "副灯第五段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fif_tp_Sec",
+      "title": "副灯第五段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Six_tt_Sec",
+      "title": "副灯第六段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Six_tp_Sec",
+      "title": "副灯第六段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fir_tt_Fir",
+      "title": "主灯第一段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fir_tp_Fir",
+      "title": "主灯第一段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Sec_tt_Fir",
+      "title": "主灯第二段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Sec_tp_Fir",
+      "title": "主灯第二段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Thir_tt_Fir",
+      "title": "主灯第三段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Thir_tp_Fir",
+      "title": "主灯第三段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Four_tt_Fir",
+      "title": "主灯第四段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Four_tp_Fir",
+      "title": "主灯第四段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fif_tt_Fir",
+      "title": "主灯第五段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Fif_tp_Fir",
+      "title": "主灯第五段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Six_tt_Fir",
+      "title": "主灯第六段定时时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Six_tp_Fir",
+      "title": "主灯第六段定时亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    }
+  ],
+  "searchFields": [
+    "UUID",
+    "PROJECT",
+    "TYPE",
+    "NAME"
+  ],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0,
+      "actionFields": [
+        "UUID|e",
+        "NAME|e",
+        "TYPE|v",
+        "LNG|e",
+        "LAT|e",
+        "PROJECT|e"
+      ]      
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "view",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 1,
+      "actionFields":[
+        "UUID|e",
+        "NAME|e",
+        "TYPE|v",
+        "LNG|e",
+        "LAT|e",
+        "PROJECT|e"
+      ]
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    },
+    {
+      "name": "control",
+      "title": "控制",
+      "type": "component",
+      "showInList": 0,
+      "showInDetail": 1      
+    },
+    {
+      "name": "dimming",
+      "title": "照度规划",
+      "type": "component",
+      "showInList": 0,
+      "showInDetail": 1
+    },    
+    {
+      "name": "metrics",
+      "title": "历史消息",
+      "type": "component",
+      "showInList": 0,
+      "showInDetail": 1
+    }
+  ]
+}

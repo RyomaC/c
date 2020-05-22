@@ -1,0 +1,772 @@
+{
+  "fields": [
+    {
+      "name": "title",
+      "title": "名称",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "remark",
+      "title": "备注",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "plan_json",
+      "title": "plan_json",
+      "dataType": "jsonObject",
+      "editType": "textbox",
+      "hidden":1 
+    },
+    {
+      "name": "Illu_downthreshold",
+      "title": "Illu_downthreshold",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Illu_upthreshold",
+      "title": "Illu_upthreshold",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Flow_downthreshold",
+      "title": "Flow_downthreshold",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Flow_upthreshold",
+      "title": "Flow_upthreshold",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Radar_downthreshold",
+      "title": "Radar_downthreshold",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Radar_upthreshold",
+      "title": "Radar_upthreshold",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Fir_Group0",
+      "title": "Fir_tt_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Fir_Group0",
+      "title": "Fir_tp_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Fir_Group0",
+      "title": "Sec_tt_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Fir_Group0",
+      "title": "Sec_tp_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Fir_Group0",
+      "title": "Thir_tt_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Fir_Group0",
+      "title": "Thir_tp_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Fir_Group0",
+      "title": "Four_tt_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Fir_Group0",
+      "title": "Four_tp_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Fir_Group0",
+      "title": "Fif_tt_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Fir_Group0",
+      "title": "Fif_tp_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Fir_Group0",
+      "title": "Six_tt_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Fir_Group0",
+      "title": "Six_tp_Fir_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Sec_Group0",
+      "title": "Fir_tt_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Sec_Group0",
+      "title": "Fir_tp_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Sec_Group0",
+      "title": "Sec_tt_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Sec_Group0",
+      "title": "Sec_tp_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Sec_Group0",
+      "title": "Thir_tt_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Sec_Group0",
+      "title": "Thir_tp_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Sec_Group0",
+      "title": "Four_tt_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Sec_Group0",
+      "title": "Four_tp_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Sec_Group0",
+      "title": "Fif_tt_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Sec_Group0",
+      "title": "Fif_tp_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Sec_Group0",
+      "title": "Six_tt_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Sec_Group0",
+      "title": "Six_tp_Sec_Group0",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Fir_Group1",
+      "title": "Fir_tt_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Fir_Group1",
+      "title": "Fir_tp_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Fir_Group1",
+      "title": "Sec_tt_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Fir_Group1",
+      "title": "Sec_tp_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Fir_Group1",
+      "title": "Thir_tt_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Fir_Group1",
+      "title": "Thir_tp_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Fir_Group1",
+      "title": "Four_tt_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Fir_Group1",
+      "title": "Four_tp_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Fir_Group1",
+      "title": "Fif_tt_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Fir_Group1",
+      "title": "Fif_tp_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Fir_Group1",
+      "title": "Six_tt_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Fir_Group1",
+      "title": "Six_tp_Fir_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Sec_Group1",
+      "title": "Fir_tt_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Sec_Group1",
+      "title": "Fir_tp_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Sec_Group1",
+      "title": "Sec_tt_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Sec_Group1",
+      "title": "Sec_tp_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Sec_Group1",
+      "title": "Thir_tt_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Sec_Group1",
+      "title": "Thir_tp_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Sec_Group1",
+      "title": "Four_tt_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Sec_Group1",
+      "title": "Four_tp_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Sec_Group1",
+      "title": "Fif_tt_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Sec_Group1",
+      "title": "Fif_tp_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Sec_Group1",
+      "title": "Six_tt_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Sec_Group1",
+      "title": "Six_tp_Sec_Group1",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Fir_Group2",
+      "title": "Fir_tt_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Fir_Group2",
+      "title": "Fir_tp_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Fir_Group2",
+      "title": "Sec_tt_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Fir_Group2",
+      "title": "Sec_tp_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Fir_Group2",
+      "title": "Thir_tt_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Fir_Group2",
+      "title": "Thir_tp_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Fir_Group2",
+      "title": "Four_tt_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Fir_Group2",
+      "title": "Four_tp_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Fir_Group2",
+      "title": "Fif_tt_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Fir_Group2",
+      "title": "Fif_tp_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Fir_Group2",
+      "title": "Six_tt_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Fir_Group2",
+      "title": "Six_tp_Fir_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Sec_Group2",
+      "title": "Fir_tt_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Sec_Group2",
+      "title": "Fir_tp_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Sec_Group2",
+      "title": "Sec_tt_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Sec_Group2",
+      "title": "Sec_tp_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Sec_Group2",
+      "title": "Thir_tt_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Sec_Group2",
+      "title": "Thir_tp_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Sec_Group2",
+      "title": "Four_tt_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Sec_Group2",
+      "title": "Four_tp_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Sec_Group2",
+      "title": "Fif_tt_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Sec_Group2",
+      "title": "Fif_tp_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Sec_Group2",
+      "title": "Six_tt_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Sec_Group2",
+      "title": "Six_tp_Sec_Group2",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Fir_Group3",
+      "title": "Fir_tt_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Fir_Group3",
+      "title": "Fir_tp_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Fir_Group3",
+      "title": "Sec_tt_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Fir_Group3",
+      "title": "Sec_tp_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Fir_Group3",
+      "title": "Thir_tt_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Fir_Group3",
+      "title": "Thir_tp_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Fir_Group3",
+      "title": "Four_tt_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Fir_Group3",
+      "title": "Four_tp_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Fir_Group3",
+      "title": "Fif_tt_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Fir_Group3",
+      "title": "Fif_tp_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Fir_Group3",
+      "title": "Six_tt_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Fir_Group3",
+      "title": "Six_tp_Fir_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tt_Sec_Group3",
+      "title": "Fir_tt_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fir_tp_Sec_Group3",
+      "title": "Fir_tp_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tt_Sec_Group3",
+      "title": "Sec_tt_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Sec_tp_Sec_Group3",
+      "title": "Sec_tp_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tt_Sec_Group3",
+      "title": "Thir_tt_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Thir_tp_Sec_Group3",
+      "title": "Thir_tp_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tt_Sec_Group3",
+      "title": "Four_tt_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Four_tp_Sec_Group3",
+      "title": "Four_tp_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tt_Sec_Group3",
+      "title": "Fif_tt_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Fif_tp_Sec_Group3",
+      "title": "Fif_tp_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tt_Sec_Group3",
+      "title": "Six_tt_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "Six_tp_Sec_Group3",
+      "title": "Six_tp_Sec_Group3",
+      "parentJson": "plan_json",
+      "dataType": "string",
+      "editType": "textbox"
+    }
+  ],
+  "searchFields": [
+    "title"
+  ],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0,
+      "component": "dimming_plan_edit"
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "view",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 1,
+      "component": "dimming_plan_edit"
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    }
+  ]
+}

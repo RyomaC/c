@@ -1,0 +1,62 @@
+{
+  "order": "_id DESC",
+  "table": "vehicle_capture",
+  "listFilter": "{\"dangmark\": \"是\"}",
+  "pageSize": 20,
+  "fields":
+  [
+    {
+      "name":"sourceTitle",
+      "title": "地点",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 300
+    },
+    {
+      "name":"plateInfo",
+      "title": "车牌",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 200
+    },
+    {
+      "name": "occured_time",
+      "title": "时间",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 300
+    }
+  ],
+  "searchFields":
+  ["plateInfo"],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "component",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 0
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    }
+  ]
+}

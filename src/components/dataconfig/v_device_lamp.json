@@ -1,0 +1,621 @@
+{
+  "table": "device",
+  "dbType": "mysql",
+  "listAggregation": "{\"$match\":{\"TYPE\":1}}",
+  "fields":
+  [
+    {
+      "name":"UUID",
+      "title": "UUID",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 250
+    },
+    {
+      "name":"NAME",
+      "title": "名称",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 150
+    },  
+    {
+      "name": "STATE",
+      "title": "在线",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Version",
+      "title": "版本号",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },    
+    {
+      "name": "Voltage",
+      "title": "电压",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Current",
+      "title": "电流",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Power",
+      "title": "功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Energy",
+      "title": "电能",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },  
+    {
+      "name": "Leak_curt",
+      "title": "漏电电流",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },    
+    {
+      "name": "Warning_state",
+      "title": "预警状态",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Sense_Fault",
+      "title": "传感器错",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 110
+    },    
+    {
+      "name": "Dimming",
+      "title": "全局亮度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "FirDimming",
+      "title": "主灯亮度值",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "SecDimming",
+      "title": "副灯亮度值",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    }, 
+    {
+      "name": "Alarm_Light_Mode",
+      "title": "灯光告警模式",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },    
+    {
+      "name": "ts_mqtt",
+      "title": "汇报时间",
+      "dataType": "timestamp",
+      "editType": "datetime",
+      "width": 110
+    },    
+    {
+      "name": "Illu",
+      "title": "照度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },
+    {
+      "name": "Temp",
+      "title": "温度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },    
+    {
+      "name": "Hum",
+      "title": "湿度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },    
+    {
+      "name": "Frequency",
+      "title": "频率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Dimming_lock",
+      "title": "照度锁",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },    
+    {
+      "name": "GROUP",
+      "title": "分组",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 150
+    },
+    {
+      "name": "Gprs_csq",
+      "title": "Gprs csq",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },  
+    {
+      "name": "lbsLongitude",
+      "title": "基站经度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },
+    {
+      "name": "lbsLatitude",
+      "title": "基站纬度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },
+    {
+      "name": "Longitude",
+      "title": "GPS经度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },
+    {
+      "name": "Latitude",
+      "title": "GPS纬度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },  
+    {
+      "name": "TYPE",
+      "title": "类型",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100,
+      "default": "2"
+    },
+    {
+      "name": "LNG",
+      "title": "经度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+    {
+      "name": "LAT",
+      "title": "纬度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+  {
+    "name": "Fir_tt_Fir",
+    "title": "主一时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Fir_tp_Fir",
+    "title": "主一亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Sec_tt_Fir",
+    "title": "主二时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Sec_tp_Fir",
+    "title": "主二亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Thir_tt_Fir",
+    "title": "主三时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Thir_tp_Fir",
+    "title": "主三亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Four_tt_Fir",
+    "title": "主四时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Four_tp_Fir",
+    "title": "主四亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Fif_tt_Fir",
+    "title": "主五时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Fif_tp_Fir",
+    "title": "主五亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Six_tt_Fir",
+    "title": "主六时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Six_tp_Fir",
+    "title": "主六亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Fir_tt_Sec",
+    "title": "辅一时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Fir_tp_Sec",
+    "title": "辅一亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Sec_tt_Sec",
+    "title": "辅二时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Sec_tp_Sec",
+    "title": "辅二亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Thir_tt_Sec",
+    "title": "辅三时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Thir_tp_Sec",
+    "title": "辅三亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Four_tt_Sec",
+    "title": "辅四时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Four_tp_Sec",
+    "title": "辅四亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Fif_tt_Sec",
+    "title": "辅五时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Fif_tp_Sec",
+    "title": "辅五亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Six_tt_Sec",
+    "title": "辅六时间",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  {
+    "name": "Six_tp_Sec",
+    "title": "辅六亮度",
+    "dataType": "string",
+    "editType": "textbox",
+    "width": 100
+  },
+  
+    {
+      "name": "PROJECT",
+      "title": "项目",
+      "dataType": "string",
+      "editType": "select",
+      "width": 400,
+      "option": "project"
+    }, 
+    {
+      "name": "FUUID",
+      "title": "父设备UUID",
+      "dataType": "string",
+      "editType": "text",
+      "width": 200
+    },
+    {
+      "name": "info",
+      "title": "info",
+      "dataType": "jsonObject",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": "",
+      "hidden": 1
+    },  
+    {
+      "name": "LampDiameter",
+      "parentJson": "info",    
+      "title": "灯杆直径",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Power_Manufacturer",
+      "parentJson": "info",    
+      "title": "电源出厂商",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Lamp_RatedCurrent",
+      "parentJson": "info",    
+      "title": "灯具额定电流",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Lamp_Ratedvoltage",
+      "parentJson": "info",    
+      "title": "灯具额定电压",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "lampType",
+      "parentJson": "info", 
+      "title": "灯具类型",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Lamp_Manufacturer",
+      "parentJson": "info",    
+      "title": "灯具出厂商",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Lamp_Num",
+      "parentJson": "info",    
+      "title": "灯具数",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "PoleProductionDate",
+      "parentJson": "info",    
+      "title": "灯具出厂日期",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Pole_height",
+      "parentJson": "info",    
+      "title": "灯杆高度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Rated_power",
+      "parentJson": "info",    
+      "title": "总额定功率",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "Subcommunicate_mode",
+      "parentJson": "info",    
+      "title": "通讯方式",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    }
+  ],
+  "searchFields":
+  ["UUID", "PROJECT", "TYPE", "NAME"],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0,
+      "actionFields": [
+        "UUID|e",
+        "NAME|e",
+        "TYPE|v",
+        "LNG|e",
+        "LAT|e",
+        "PROJECT|e"
+      ]      
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "view",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 1,
+      "actionFields": [
+        "UUID|e",
+        "NAME|e",
+        "TYPE|v",
+        "LNG|e",
+        "LAT|e",
+        "PROJECT|e",
+        "FUUID|e",
+        "LampDiameter|e",
+        "Power_Manufacturer|e",
+        "Lamp_RatedCurrent|e",
+        "Lamp_Ratedvoltage|e",
+        "lampType|e",
+        "Lamp_Manufacturer|e",
+        "Lamp_Num|e",
+        "PoleProductionDate|e",
+        "Pole_height|e",
+        "Rated_power|e",
+        "Subcommunicate_mode|e"
+      ]
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    },
+    {
+      "name": "control",
+      "title": "控制",
+      "type": "component",
+      "showInList": 0,
+      "showInDetail": 1
+    },
+    {
+      "name": "metrics",
+      "title": "历史消息",
+      "type": "component",
+      "showInList": 0,
+      "showInDetail": 1
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "fields":
+  [
+    {
+      "name":"name",
+      "title":"名称",
+      "dataType":"string",
+      "editType":"textbox"
+    }, 
+    {
+      "name":"granted_actions",
+      "title": "授予权限",
+      "dataType":"string",
+      "editType": "textbox"
+    },
+    {
+      "name": "remark",
+      "title": "备注",
+      "dataType": "string",
+      "editType": "textbox"
+    }
+  ],
+  "searchFields":
+  [],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "view",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "component",
+      "showInList": 0,
+      "showInDetail": 1
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    }
+  ]
+}

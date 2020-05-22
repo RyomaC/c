@@ -1,0 +1,38 @@
+.drawer {
+  background-color: rgb(12, 27, 78);
+  border: 1px sold white;
+  color: white;
+  font-size: 9px;
+  overflow-y: auto; 
+  width: 680px;
+}
+.topdrawer {
+  background-color:#0E2A43;;
+  border: 1px sold white;
+  color: white;
+  font-size: 15px;
+  overflow-y: auto; 
+}
+#datalist .el-table td{
+  background:#021953 !important;
+  padding:5px;
+}
+.el-pagination {
+  margin-top: 5px;
+}
+.el-pagination__total, .el-pager, .el-pagination .btn-next, .el-pagination .btn-prev, .el-pagination button, .el-pager li, .el-pager li.btn-quickprev, .el-pager li.btn-quicknext{
+  color: white;
+  background:#333;
+}
+.el-pagination button:disabled{
+  background:#333;
+}
+.el-drawer__close-btn{
+  color:white;
+}
+
+@media screen and (max-width: 800px) {
+  .drawer {
+    width: 100%;
+  }
+}

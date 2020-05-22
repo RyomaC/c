@@ -1,0 +1,59 @@
+{
+  "order": "_id DESC",  
+  "fields": [
+    {
+      "name": "UUID",
+      "title": "UUID",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 260      
+    },
+    {
+      "name": "warning_state",
+      "title": "状态码",      
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },
+    {
+      "name": "ts",
+      "title": "时间",
+      "dataType": "timestamp",
+      "editType": "datetime",
+      "width": 200
+    },
+    {
+      "name": "NAME",
+      "title": "名称",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 300
+    },
+    {
+      "name": "PROJECT",
+      "title": "项目",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 300
+    }
+  ],
+  "searchFields": [
+    "UUID"
+  ],
+"actions": [
+  {
+    "name": "view",
+    "title": "查看",
+    "type": "view",
+    "showInList": 1,
+    "showInDetail": 1
+  },
+  {
+    "name": "delete",
+    "title": "删除",
+    "type": "delete",
+    "showInList": 1,
+    "showInDetail": 0
+  }
+]  
+}

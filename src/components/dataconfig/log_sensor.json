@@ -1,0 +1,29 @@
+{
+  "pageSize": 15,
+  "fields": [
+    {
+      "name": "key",
+      "title": "key",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 260      
+    },
+    {
+      "name": "value",
+      "title": "value",      
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 1000
+    },
+    {
+      "name": "_cts",
+      "title": "time",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 300
+    }
+  ],
+  "searchFields": [
+    "key"
+  ]
+}

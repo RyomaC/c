@@ -1,0 +1,30 @@
+{
+  "pageSize": 15,  
+  "order": "_id DESC",
+  "fields": [
+    {
+      "name": "uuid",
+      "title": "uuid",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 260      
+    },
+    {
+      "name": "info_doc",
+      "title": "info",      
+      "dataType": "jsonObject",
+      "editType": "textbox",
+      "width": 1000
+    },
+    {
+      "name": "ts",
+      "title": "ts",
+      "dataType": "timestamp",
+      "editType": "datetime",
+      "width": 300
+    }
+  ],
+  "searchFields": [
+    "uuid"
+  ]
+}

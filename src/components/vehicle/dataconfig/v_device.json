@@ -1,0 +1,156 @@
+{
+  "table":"device",
+  "dbType": "mysql",  
+  "fields":
+  [
+    {
+      "name":"UUID",
+      "title": "UUID",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 250
+    },
+    {
+      "name":"NAME",
+      "title": "名称",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 150
+    },
+    {
+      "name":"TYPE",
+      "title": "类型",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },
+    {
+      "name":"LNG",
+      "title": "经度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+    {
+      "name":"LAT",
+      "title": "纬度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+    {
+      "name":"PROJECT",
+      "title": "项目",
+      "dataType": "string",
+      "editType": "select",
+      "width": 400,
+      "option":"project"
+    },
+    {
+      "name": "ADDR",
+      "title": "安装地址",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 400
+    },
+    {
+      "name": "IPADDR",
+      "title": "IP地址",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 400
+    },    
+    {
+      "name": "info",
+      "title": "info",
+      "dataType": "jsonObject",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": "",
+      "hidden": 1
+    },
+    {
+      "name": "cam_id",
+      "parentJson": "info",
+      "title": "摄像头ID",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "stream_url",
+      "parentJson": "info",
+      "title": "视频流地址",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "stream_user",
+      "parentJson": "info",
+      "title": "登录用户名",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "stream_password",
+      "parentJson": "info",
+      "title": "登录密码",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    },
+    {
+      "name": "road_direction",
+      "parentJson": "info",
+      "title": "路线朝向",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": "",
+      "readOnly": "",
+      "unique": ""
+    }
+  ],
+  "searchFields":
+  ["UUID", "PROJECT", "TYPE", "NAME"],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "component",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 0
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    }
+  ] 
+}

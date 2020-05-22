@@ -1,0 +1,26 @@
+{
+  "fields":
+  [
+    {
+      "name":"_id",
+      "title": "日期",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 300
+    },
+    {
+      "name":"vehicleCount",
+      "title": "检出车辆",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 200
+    },
+    {
+      "name": "dangerCount",
+      "title": "危化品车辆",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 200
+    }
+  ]
+}

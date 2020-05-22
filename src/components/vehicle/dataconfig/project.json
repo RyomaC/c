@@ -1,0 +1,84 @@
+{
+  "fields":
+  [
+    {
+      "name":"title",
+      "title": "项目名",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "lng",
+      "title": "经度",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "lat",
+      "title": "纬度",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "admin",
+      "title": "管理员",
+      "dataType": "string",
+      "editType": "textbox",
+      "option":""
+    },
+    {
+      "name": "smsphone",
+      "title": "负责人手机",
+      "dataType": "string",
+      "editType": "textbox",
+      "option": ""
+    },
+    {
+      "name": "code",
+      "title": "代码",
+      "dataType": "string",
+      "editType": "textbox",
+      "option": ""
+    },    
+    {
+      "name": "subgroups",
+      "title": "分组",
+      "dataType": "string",
+      "editType": "textbox",
+      "multi": 1
+    }
+  ],
+  "searchFields": [
+    "title"
+  ],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "view",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 1
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    }
+  ] 
+}

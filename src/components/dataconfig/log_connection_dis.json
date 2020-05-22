@@ -1,0 +1,32 @@
+{
+  "pageSize": 15,
+  "fields": [
+    {
+      "name": "clientid",
+      "title": "clientid",
+      "dataType": "string",
+      "editType": "textbox"  
+    },
+    {
+      "name": "username",
+      "title": "username",      
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "reason",
+      "title": "reason",
+      "dataType": "string",
+      "editType": "textbox"
+    },
+    {
+      "name": "ts",
+      "title": "ts",
+      "dataType": "string",
+      "editType": "textbox"
+    }
+  ],
+  "searchFields": [
+    "clientid"
+  ]
+}

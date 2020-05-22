@@ -1,0 +1,87 @@
+{
+  "fields":
+  [
+    {
+      "name":"UUID",
+      "title": "UUID",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 250
+    },
+    {
+      "name":"NAME",
+      "title": "名称",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 150
+    },
+    {
+      "name":"TYPE",
+      "title": "类型",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 100
+    },
+    {
+      "name":"LNG",
+      "title": "经度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+    {
+      "name":"LAT",
+      "title": "纬度",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 120
+    },
+    {
+      "name":"PROJECT",
+      "title": "项目",
+      "dataType": "string",
+      "editType": "select",
+      "width": 400,
+      "option":"project"
+    },
+    {
+      "name": "PATH",
+      "title": "路径",
+      "dataType": "string",
+      "editType": "textbox",
+      "width": 400
+    }
+  ],
+  "searchFields":
+  ["UUID", "PROJECT", "TYPE", "NAME"],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "view",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 1
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    }
+  ] 
+}

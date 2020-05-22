@@ -1,0 +1,62 @@
+{
+  "fields":
+  [
+    {
+      "name":"username",
+      "title":"用户名",
+      "dataType":"string",
+      "editType":"textbox"
+    }, 
+    {
+      "name":"phone",
+      "title": "手机",
+      "dataType":"string",
+      "editType": "textbox"
+    }, 
+    {
+      "name":"fullname",
+      "title": "全名",
+      "dataType":"string",
+      "editType": "textbox"
+    },
+    {
+      "name": "roles",
+      "title": "角色",
+      "dataType": "string",
+      "editType": "checkbox",
+      "option": "roles"
+    }
+  ],
+  "searchFields":
+  ["username","fullname"],
+  "actions": [
+    {
+      "name": "new",
+      "title": "新建",
+      "showInList": 0,
+      "type": "new",
+      "showInDetail": 0
+    },
+    {
+      "name": "view",
+      "title": "查看",
+      "type": "view",
+      "showInList": 1,
+      "showInDetail": 1
+    },
+    {
+      "name": "edit",
+      "title": "编辑",
+      "type": "edit",
+      "showInList": 0,
+      "showInDetail": 1
+    },
+    {
+      "name": "delete",
+      "title": "删除",
+      "type": "delete",
+      "showInList": 1,
+      "showInDetail": 0
+    }
+  ]
+}
