@@ -61,88 +61,67 @@
         </el-row>
         </div>
     </el-drawer>
-    <div style="height:100px"> </div>
+    <el-header style="height:110px; width:100%;">
         <div id="bannerTitle" @mouseover="glanceVisible=true" >中科洛丁智慧城市管理平台</div>
-            <div id="bannerTime">{{currentTime}}</div>
-    <div id="bannerWeather">
-        <iframe style="margin-left: 5%;" allowtransparency="true" frameborder="0" width="90%" height="100%" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=1&v=0&d=1&bd=0&k=000000&f=ffffff&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=59493&w=500&h=176&align=left"></iframe>
-    </div>
-        <!-- <div id="bannerTitle"></div> -->
-    <!-- </div> -->
-          <PortalMap ref="map" style="height:75%; width:100%;position:absolute;" />
-    <component style="height:calc(100% - 100px); margin-top:100px" v-bind:is="portalComponent" />
+        <div id="bannerTime">{{currentTime}}</div>
+        <div id="bannerWeather">
+            <iframe style="margin-left: 5%;" allowtransparency="true" frameborder="0" width="90%" height="100%" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=1&v=0&d=1&bd=0&k=000000&f=ffffff&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=59493&w=500&h=176&align=left"></iframe>
+        </div>
+    </el-header>
+    <el-main style="height:calc(100%-110px); width:100%;">
+      <Map ref="map" :componentType="componentType"/>
+    </el-main>
 
   </el-container>
 </template>
 
 <script>
 import PortalMap from '@/components/PortalMap'
-import MonitorHome from '@/components/MonitorHome'
-import MonitorVehicle from '@/components/vehicle/MonitorVehicle'
-import MonitorPerson from '@/components/vehicle/MonitorPerson'
-import MonitorLight from '@/components/MonitorLight'
-import MonitorAlarm from '@/components/vehicle/MonitorAlarm'
-import MonitorEnvironment from '@/components/Environment'
-import MonitorGovernment from '@/components/vehicle/MonitorGovernment'
-import MonitorSecurity from '@/components/MonitorSecurity'
-
-import {_} from 'underscore'
+import Map from '@/components/Map'
 
 export default {
-  components: {PortalMap, MonitorHome, MonitorVehicle},
+  components: {PortalMap, Map},
   methods: {
     getCurrentTime () {
-      let show_day = new Array('星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日')
-      let date_time = new Date()
-      let year = date_time.getFullYear()
+      let showDay = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+      let dateTime = new Date()
+      let year = dateTime.getFullYear()
       if (year < 10) {
         year = '0' + year
       }
-      let month = date_time.getMonth() + 1
+      let month = dateTime.getMonth() + 1
       if (month < 10) {
         month = '0' + month
       }
-      let day = date_time.getDate()
+      let day = dateTime.getDate()
       if (day < 10) {
         day = '0' + day
       }
-      let hours = date_time.getHours()
+      let hours = dateTime.getHours()
       if (hours < 10) {
         hours = '0' + hours
       }
-      let minutes = date_time.getMinutes()
+      let minutes = dateTime.getMinutes()
       if (minutes < 10) {
         minutes = '0' + minutes
       }
-      let seconds = date_time.getSeconds()
+      let seconds = dateTime.getSeconds()
       if (seconds < 10) {
         seconds = '0' + seconds
       }
-      this.currentTime = year + '年' + month + '月' + day + '日' + ' ' + show_day[date_time.getDay() - 1] + ' ' + hours + ':' + minutes + ':' + seconds
+      this.currentTime = year + '年' + month + '月' + day + '日' + ' ' + showDay[dateTime.getDay() - 1] + ' ' + hours + ':' + minutes + ':' + seconds
     },
     toggleComponent (title) {
       console.log(`========>  toggle: ${title}`)
-      const mapping = {
-        'home': MonitorHome,
-        'vehicle': MonitorVehicle,
-        'person': MonitorPerson,
-        'light': MonitorLight,
-        'environment': MonitorEnvironment,
-        'government': MonitorGovernment,
-        'alarm': MonitorAlarm,
-        'security': MonitorSecurity
-      }
-      if (mapping[title]) {
-        this.portalComponent = mapping[title]
-      }
+      this.componentType = title
       this.glanceVisible = false
     }
   },
   data: function () {
     return {
       currentTime: '',
-      portalComponent: MonitorHome,
-      glanceVisible: false
+      glanceVisible: false,
+      componentType: 'home'
     }
   },
   mounted: function () {
@@ -178,25 +157,19 @@ export default {
 #bannerTitle{
   font-size: 35pt;
   color: rgb(240, 240, 240);
-  left: 100px;
-  right: 100px;
-  top: 20px;
-  margin: auto;
-  /* height: 250px; */
-  position: absolute;
-  z-index: 800;
-  text-shadow:10px 10px 10px black
+  position: relative;
+  text-shadow: 10px 10px 10px black;
+  text-align: center;
+  line-height: 110px;
 }
 #bannerTime{
   font-size: 18px;
-  color: rgb(240, 240, 240);
+  color: #FFFFFF;
   right: 15px;
-  top: 17px;
+  top: 10px;
   width: 300px;
-  height: 100px;
   position: absolute;
-  z-index: 800;
-  text-shadow:10px 10px 10px black
+  text-shadow: 10px 10px 10px black;
 }
 #bannerWeather{
   right: 15px;

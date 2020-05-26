@@ -6,9 +6,6 @@
           <el-col :span="12"><img src="/static/images/v-logo.png" @click="toggleSideMenu" style="width:40px; height:40px; vertical-align:middle;"/> 洛丁智慧照明</el-col>
           <el-col :span="12">
             <div style="text-align:right">
-              <el-button type="text" icon="el-icon-message-solid" @click="toggleDeviceList">
-                <el-badge :value="warningCount" class="badget" v-show="warningCount>0"></el-badge>
-              </el-button>
               <el-dropdown v-if="fullname" @command="handlerUserCommand">
                 <span style="color:white;">
                   <i class="el-icon-user"></i>{{fullname}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -24,17 +21,21 @@
         </el-row>
       </el-header>
       <el-container style="overflow:auto">
-        <Map ref="map"/>
+        <LeftSideMenu ref="leftSideMenu" v-show="leftSideMenuShown"/>
+        <el-main style="overflow:auto;">
+          <router-view />
+        </el-main>
       </el-container>
     </el-container>
+    <router-view v-if="viewMode == 0"></router-view>
   </div>
 </template>
 
 <script>
-import Map from '@components/Map'
+import LeftSideMenu from '@/components/LeftSideMenu'
 
 export default {
-  components: {Map},
+  components: {LeftSideMenu},
   methods: {
     logout: function () {
       localStorage.clear()
@@ -44,8 +45,8 @@ export default {
       this.$router.replace('/userchangepassword')
     },
     toggleSideMenu: function () {
-      // let visible = this.$refs.leftSideMenu.$el.style.display === 'block'
-      // this.$refs.leftSideMenu.$el.style.display = visible ? 'none' : 'block'
+      let visible = this.$refs.leftSideMenu.$el.style.display === 'block'
+      this.$refs.leftSideMenu.$el.style.display = visible ? 'none' : 'block'
     },
     handlerUserCommand: function (command) {
       switch (command) {
@@ -70,7 +71,7 @@ export default {
   data: function () {
     return {
       fullname: '',
-      // leftSideMenuShown: true,
+      leftSideMenuShown: false,
       viewMode: 1,
       warningCount: 0
     }
@@ -85,8 +86,8 @@ export default {
   },
   watch: {
     '$route': function () {
-      // let w = document.documentElement.offsetWidth || document.body.offsetWidth
-      // this.$refs.leftSideMenu.$el.style.display = w > 800 ? 'block' : 'none'
+      let w = document.documentElement.offsetWidth || document.body.offsetWidth
+      this.$refs.leftSideMenu.$el.style.display = w > 800 ? 'block' : 'none'
     }
   }
 }

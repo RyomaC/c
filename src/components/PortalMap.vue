@@ -88,7 +88,6 @@ import 'echarts/lib/chart/pie'
 import 'echarts/lib/component/legendScroll'
 import 'echarts/lib/component/tooltip'
 import echartsUtil from '@/utils/echartsUtil'
-import timeUtil from '@/utils/timeUtil'
 import warningStateUtil from '@/utils/warningStateUtil'
 import moment from 'moment'
 
