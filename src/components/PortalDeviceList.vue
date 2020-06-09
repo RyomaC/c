@@ -1,14 +1,14 @@
 <template>
   <div id="devicelist">
     <div id="actionBar" style="text-align:right; margin-right:10px">
-      <el-button type="text" @click="toggleSelectMode(true)" v-show="!selectMode">选择</el-button><el-button type="text" @click="controlModeClick(false)" v-show="selectMode">管理</el-button><el-button type="text" @click="toggleSelectMode(false)" v-show="selectMode">取消</el-button>
+      <el-button type="text" @click="toggleSelectMode(true)" v-show="!selectMode">切换至多选</el-button><el-button type="text" @click="toggleSelectMode(false)" v-show="selectMode">切换至单选</el-button>
     </div>
     <div class="listContainer">
       <div class="groupItem" v-for="(groupDevices,group) in devices" :key="group">
         <div style="clear:both; font-size:15px; line-height:40px">{{(group == 'undefined' || !group) ? "默认组" : group}}
           <el-button type="text" style="float:right; margin-right:10px" v-show="selectMode" @click="toggleGroupSelect(groupDevices, group, groupNotAllSelected[group]?'All':'None')">{{groupNotAllSelected[group]?'全选':'全不选'}}</el-button>
         </div>
-        <div style="clear:both; margin-bottom:30px;">
+        <div style="clear:both; margin-bottom:30px;" id="footer-box-title">
           <span @click="itemClicked(device.UUID)" v-for="device in groupDevices"
             :key="device.ID"
             :ref="device.UUID"
@@ -25,9 +25,8 @@
                         ? selectedUUIDs[device.UUID]
                           ? ' selected'
                           : ' select'
-                        : ''
-                      )
-            ">
+                        : single == device.UUID ? ' active' : ''
+                      ) ">
                 {{device.NAME}}
           </span>
         </div>
@@ -40,7 +39,7 @@
 import {_} from 'underscore'
 
 export default {
-  props: ['deviceList'], //, 'selectMode'
+  props: ['deviceList', 'selectedUuidList', 'selectMode1', 'single1'], //, 'selectMode'
   methods: {
     checkGroupSelectStatus (groupDevices, group) {
       let notAllSelected = false
@@ -69,17 +68,17 @@ export default {
       this.checkAllGroupSelectStatus()
     },
     toggleSelectMode (selectMode) {
+      this.single = 0
       this.selectMode = selectMode
       this.selectedUUIDs = {}
       if (!this.selectMode) {
         this.$emit('controlModeChange', false)
       }
-    },
-    controlModeClick () {
-      this.$emit('controlModeChange', true)
+      this.$emit('controlModeChange', selectMode)
     },
     itemClicked (id) {
       if (!this.selectMode) {
+        this.single = id
         this.$emit('itemClicked', id)
         return
       }
@@ -97,7 +96,8 @@ export default {
       devices: [],
       selectMode: false,
       selectedUUIDs: {},
-      groupNotAllSelected: {}
+      groupNotAllSelected: {},
+      single: 0
     }
   },
   watch: {
@@ -106,6 +106,15 @@ export default {
       this.devices = _.sortBy(this.devices, 'NAME')
       this.devices = _.groupBy(this.devices, 'SUBGROUP')
       this.checkAllGroupSelectStatus()
+    },
+    'selectedUuidList': function () {
+      this.selectedUUIDs = this.selectedUuidList
+    },
+    'selectMode1': function () {
+      this.selectMode = this.selectMode1
+    },
+    'single1': function () {
+      this.single = this.single1
     }
   }
 }
@@ -155,9 +164,20 @@ export default {
 .warning {
   background-color:red;
 }
+.active {
+  opacity: 1;
+  -moz-box-shadow: inset #09BB07 0 -1px 0 0;
+  -webkit-box-shadow: inset #09BB07 0 -1px 0 0;
+  box-shadow: inset #09BB07 0 -1px 0 0;
+}
 .highlight {
   -moz-box-shadow: inset red 0 -1px 0 0;
   -webkit-box-shadow: inset red 0 -1px 0 0;
   box-shadow: inset red 0 -1px 0 0;
+}
+@media screen and (max-width: 800px) {
+  #actionBar{
+    display: none;
+  }
 }
 </style>

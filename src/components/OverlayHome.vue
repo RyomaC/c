@@ -39,7 +39,7 @@
         <StatsDataList ref="cityEventList" style="padding-top:10px; height:calc(100% - 20px)" :options="cityEventData" />
       </FrameContainer>
     </el-aside>
-    <el-main width="75%">
+    <el-main width="75%" style="height:30%;top: 70%;">
       <FrameContainer class="map_footer">
         <swiper :options="swiperOption" style="height:calc(100% - 20px); width:calc(100% - 20px);padding-top:10px">
           <swiper-slide>
@@ -105,6 +105,7 @@ import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 import {_} from 'underscore'
+import echartsUtil from '@/utils/echartsUtil'
 
 export default {
   components: {PortalMap,
@@ -338,19 +339,19 @@ export default {
       if (this.environmentChartSelectedIndex >= this.environmentChartOptions.legend.data.length) {
         this.environmentChartSelectedIndex = 0
       }
-      this.$refs.environmentChart.dispatchAction(
-        {type: 'legendSelect', name: this.environmentChartOptions.legend.data[this.environmentChartSelectedIndex]})
+    //   this.$refs.environmentChart.dispatchAction(
+    //     {type: 'legendSelect', name: this.environmentChartOptions.legend.data[this.environmentChartSelectedIndex]})
 
-      this.$refs.lampOnRateChart.dispatchAction(
-        {type: 'downplay', seriesIndex: 0, dataIndex: this.lampOnRateChartSelectedIndex})
-      this.lampOnRateChartSelectedIndex++
-      if (this.lampOnRateChartSelectedIndex >= this.lampOnRateChartOptions.legend.data.length) {
-        this.lampOnRateChartSelectedIndex = 0
-      }
-      this.$refs.lampOnRateChart.dispatchAction(
-        {type: 'highlight', seriesIndex: 0, dataIndex: this.lampOnRateChartSelectedIndex})
-      this.$refs.lampOnRateChart.dispatchAction(
-        {type: 'showTip', seriesIndex: 0, dataIndex: this.lampOnRateChartSelectedIndex})
+    //   this.$refs.lampOnRateChart.dispatchAction(
+    //     {type: 'downplay', seriesIndex: 0, dataIndex: this.lampOnRateChartSelectedIndex})
+    //   this.lampOnRateChartSelectedIndex++
+    //   if (this.lampOnRateChartSelectedIndex >= this.lampOnRateChartOptions.legend.data.length) {
+    //     this.lampOnRateChartSelectedIndex = 0
+    //   }
+    //   this.$refs.lampOnRateChart.dispatchAction(
+    //     {type: 'highlight', seriesIndex: 0, dataIndex: this.lampOnRateChartSelectedIndex})
+    //   this.$refs.lampOnRateChart.dispatchAction(
+    //     {type: 'showTip', seriesIndex: 0, dataIndex: this.lampOnRateChartSelectedIndex})
     }
   },
   data: function () {
@@ -415,7 +416,7 @@ export default {
   padding:5px;
 }
 .map_footer{
-  height:25%;
+  height:100%;
   background-color: #0E2A43;
 }
 .swiper-slide {

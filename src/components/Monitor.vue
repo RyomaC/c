@@ -8,45 +8,44 @@
       <div style="width:100%; height:200px; overflow:hidden;">
         <div style="text-align:center; font-size:35px; height:60px;">中科洛丁智慧城市</div>
         <el-row :gutter="20" style="height:100px; border:0; padding:0; ">
-          <el-col :span="1">&nbsp;
-            </el-col>
-          <el-col :span="3">
+          <el-col :span="3">&nbsp;</el-col>
+          <el-col :span="2">
             <div @click="toggleComponent('home')">
             <i class="el-icon-s-home" />
             <div class="moduleTitle">首页</div>
             </div>
           </el-col>
-          <el-col :span="3">
+          <el-col :span="2">
             <div @click="toggleComponent('vehicle')">
             <i class="el-icon-truck" />
             <div class="moduleTitle">车辆</div>
             </div>
           </el-col>
-          <el-col :span="3">
+          <el-col :span="2">
             <div  @click="toggleComponent('person')">
             <i class="el-icon-user" />
             <div class="moduleTitle">行人</div>
             </div>
           </el-col>
-          <el-col :span="3">
+          <el-col :span="2">
             <div  @click="toggleComponent('light')">
             <i class="el-icon-s-opportunity" />
             <div class="moduleTitle">照明</div>
             </div>
           </el-col>
-          <el-col :span="3">
+          <el-col :span="2">
             <div  @click="toggleComponent('government')">
             <i class="el-icon-office-building" />
             <div class="moduleTitle">市政</div>
             </div>
           </el-col>
-          <el-col :span="3">
+          <el-col :span="2">
             <div  @click="toggleComponent('environment')">
             <i class="el-icon-sunrise" />
             <div class="moduleTitle">环境</div>
             </div>
           </el-col>
-          <el-col :span="3">
+          <el-col :span="2">
             <div  @click="toggleComponent('alarm')">
             <i class="el-icon-bell" />
             <div class="moduleTitle">报警</div>
@@ -58,6 +57,13 @@
             <div class="moduleTitle">安防</div>
             </div>
           </el-col>
+          <el-col :span="2">
+            <div  @click="toggleComponent('')">
+            <i class="el-icon-set-up" />
+            <div class="moduleTitle">管理</div>
+            </div>
+          </el-col>
+          <el-col :span="3">&nbsp;</el-col>
         </el-row>
         </div>
     </el-drawer>
@@ -112,7 +118,7 @@ export default {
       this.currentTime = year + '年' + month + '月' + day + '日' + ' ' + showDay[dateTime.getDay() - 1] + ' ' + hours + ':' + minutes + ':' + seconds
     },
     toggleComponent (title) {
-      console.log(`========>  toggle: ${title}`)
+      // console.log(`========>  toggle: ${title}`)
       this.componentType = title
       this.glanceVisible = false
     }
