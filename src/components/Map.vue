@@ -1,12 +1,13 @@
 <template>
   <div style="width:100%;height:100%;position:relative;">
-    <div id="mapContainer" v-bind:class="{homeClass:a,lightClass:b}"></div>
-    <component id="modultePart" v-bind:is="overlayComponent" v-if="modultePartVisible"/>
+    <div id="mapContainer" v-bind:class="{homeClass:a,lightClass:b}">
+      <component id="moduleMap" v-bind:is="overlayMap" v-if="moduleMapVisible" />
+    </div>
+    <component id="modulePart" v-bind:is="overlayComponent" v-if="modulePartVisible"/>
   </div>
 </template>
 
 <script>
-import remoteLoad from '@/utils/remoteLoad.js'
 import OverlayHome from '@/components/OverlayHome'
 import OverlayVehicle from '@/components/vehicle/OverlayVehicle'
 import OverlayPerson from '@/components/vehicle/OverlayPerson'
@@ -17,9 +18,9 @@ import OverlayEnvironment from '@/components/Environment'
 import OverlayGovernment from '@/components/vehicle/OverlayGovernment'
 import OverlaySecurity from '@/components/OverlaySecurity'
 import markersLight from '@/components/dataconfig/markers_light'
-import _ from 'underscore'
-import lnglatUtil from '@/utils/lnglatUtil'
-import styleUtil from '@/utils/styleUtil'
+import remoteLoad from '@/utils/remoteLoad.js'
+import securityUtil from '@/utils/securityUtil.js'
+import Bus from '@/utils/bus.js'
 
 let loadedAMapJS = false
 
@@ -29,9 +30,12 @@ export default {
   data: function () {
     return {
       text: '主页',
+      amap: null,
       overlayComponent: OverlayHome,
+      overlayMap: OverlayLightmap,
       a: false,
       b: false,
+      marker: null,
       projectMarkersData: [],
       projects: [],
       projectMarks: null,
@@ -43,25 +47,82 @@ export default {
       lightConnected: 0,
       deviceList: [],
       lightMarkersData: [],
-      modultePartVisible: true
+      modulePartVisible: true,
+      moduleMapVisible: false,
+      mouseTool: null
     }
   },
   async created () {
     if (!loadedAMapJS) {
-      await remoteLoad('https://webapi.amap.com/maps?v=1.4.15&key=2691a1ff880a31cc519476070f38e69e')
+      await remoteLoad('https://webapi.amap.com/maps?v=1.4.15&key=2691a1ff880a31cc519476070f38e69e&plugin=AMap.MouseTool')
       loadedAMapJS = true
     }
     this.initMap()
   },
   mounted: function () {
     this.initMap()
+
+    this.$EventBus.$on('setmarker', (index) => {
+      this.marker.setPosition([index.LNG, index.LAT])
+      this.marker.setLabel({content: index.NAME})
+      this.marker.show()
+    })
+    this.$EventBus.$on('hidemarker', (index) => {
+      this.marker.hide()
+    })
+    this.$EventBus.$on('reloadmarkers', (index) => {
+      this.deviceList = []
+      markersLight.loadMarkers(this.amap, this.deviceList, index, this.indexedDeviceList, this.lightConnected, this.lightMarkersData, this.$EventBus)
+    })
+    this.$EventBus.$on('setCenterZoom', (index) => {
+      this.amap.setCenter(this.mapcenter)
+      this.amap.setZoom(5)
+    })
+    this.$EventBus.$on('closeMouseTool', (index) => {
+      this.mouseTool && this.mouseTool.close(true)
+      // this.amap.clearMap()
+    })
+    this.$EventBus.$on('setZoom', (index) => {
+      this.amap.panTo([index.LNG, index.LAT])
+      this.amap.setZoom(18)
+    })
+    this.$EventBus.$on('drawRectangle', (index) => {
+      const overlays = []
+      const self = this
+
+      this.mouseTool.rectangle({
+        strokeColor: 'red',
+        strokeOpacity: 0.5,
+        strokeWeight: 2
+      })
+
+      this.mouseTool.on('draw', function (e) {
+        let AMap = window.AMap
+        overlays.push(e.obj)
+        const overlayPath = e.obj.getPath()// 覆盖物路径，event.obj 为绘制出来的覆盖物对象
+        for (let i = 0; i < index.length; i++) {
+          const point = index[i].lnglat
+          const isPointInRing = AMap.GeometryUtil.isPointInRing(
+            point,
+            overlayPath
+          )
+          if (isPointInRing) { // 点在矩形内
+            self.$EventBus.$emit('isPointInRing', index[i].uuid)
+          }
+          self.amap.remove(overlays)
+        }
+      })
+    })
   },
   watch: {
     'componentType': function () {
+      console.log(this.componentType)
       switch (this.componentType) {
         case 'home':
           this.text = '主页'
           this.a = true
+          this.b = false
+          this.modulePartVisible = true
           break
         case 'vehicle':
           this.text = '车辆'
@@ -72,7 +133,8 @@ export default {
         case 'light':
           this.text = '照明'
           this.b = true
-          this.modultePartVisible = false
+          this.a = false
+          this.modulePartVisible = false
           break
         case 'environment':
           this.text = '环境'
@@ -106,6 +168,7 @@ export default {
     initMap: function () {
       if (!loadedAMapJS) return
       let AMap = window.AMap
+      const self = this
       this.amap = new AMap.Map('mapContainer', {
         resizeEnable: true,
         mapStyle: 'amap://styles/blue',
@@ -113,12 +176,58 @@ export default {
         zooms: [5, 18]
       })
 
+      this.amap.on('zoomchange', this.zoomChange)
+      this.marker = new AMap.Marker({content: ' ', map: this.amap})
       this.$axios
         .post('/project/list', {size: 2000})
         .then(response => {
           this.projects = response.data.data.data
           this.showProjectMarkers()
         })
+
+      // 创建右键菜单
+      this.contextMenu = new AMap.ContextMenu()
+      if (this.checkGranted('v_device_lamp/view')) {
+        this.contextMenu.addItem('新增路灯', function () {
+          const paramLnglat = {
+            LNG: self.contextMenuPositon.getLng(),
+            LAT: self.contextMenuPositon.getLat(),
+            PROJECT: self.projects[self.projectSelectedIndex].title
+          }
+          const paramItem = 'v_device_lamp'
+          self.$EventBus.$emit('rightclick', {paramLnglat: paramLnglat, paramItem: paramItem})
+        }, 0)
+      }
+      if (this.checkGranted('v_device_ebox/view')) {
+        this.contextMenu.addItem('新增电箱', function () {
+          const paramLnglat = {
+            LNG: self.contextMenuPositon.getLng(),
+            LAT: self.contextMenuPositon.getLat(),
+            PROJECT: self.projects[self.projectSelectedIndex].title
+          }
+          const paramItem = 'v_device_ebox'
+          self.$EventBus.$emit('rightclick', {paramLnglat: paramLnglat, paramItem: paramItem})
+        }, 1)
+      }
+      if (this.checkGranted('v_device_wiresafe/view')) {
+        this.contextMenu.addItem('新增报警器', function () {
+          const paramLnglat = {
+            LNG: self.contextMenuPositon.getLng(),
+            LAT: self.contextMenuPositon.getLat(),
+            PROJECT: self.projects[self.projectSelectedIndex].title
+          }
+          const paramItem = 'v_device_wiresafe'
+          self.$EventBus.$emit('rightclick', {paramLnglat: paramLnglat, paramItem: paramItem})
+        }, 2)
+      }
+      // 地图绑定鼠标右击事件——弹出右键菜单
+      this.amap.on('rightclick', function (e) {
+        self.contextMenu.open(self.amap, e.lnglat)
+        self.contextMenuPositon = e.lnglat
+      })
+
+      // 生成鼠标绘图工具
+      self.mouseTool = new AMap.MouseTool(this.amap)
     },
     showProjectMarkers: function () {
       // eslint-disable-next-line no-unused-vars
@@ -155,67 +264,40 @@ export default {
     showProjectDetail: function (e) {
       console.log(this.componentType)
       if (this.componentType === 'light') {
+        this.amap.clearMap()
+        this.modulePartVisible = true
+        this.moduleMapVisible = true
+        this.overlayMap = OverlayLightmap
+        this.projectMarks.hide()
+
         const project = this.projects[e.data.id]
         this.projectName = project.title
-        // this.$EventBus.$emit('projectChanged', {project})
+        this.$EventBus.$emit('projectChanged', {project})
         this.projectSelectedIndex = e.data.id
+        // this.$EventBus.$emit('getprojectSelectedIndex', e.data.id)
         this.debugInfo = parseFloat(project.lat)
         if (project.lng) {
           this.amap.setCenter([project.lng, project.lat])
           this.amap.setZoom(18)
         }
         this.deviceList = []
-        this.$axios
-          .post('/v_device_lamp/list', {where: {PROJECT: project.title}, size: 2000})
-          .then(response => {
-            this.deviceList = this.deviceList.concat(response.data.data.data)
-            this.indexedDeviceList = _.indexBy(this.deviceList, 'UUID')
-            this.showMarkers(this.componentType)
-            this.lightConnected = _.filter(this.deviceList, {TYPE: 2, STATE: 1}).length
-
-            for (let i = 0; i < this.deviceList.length; i++) {
-              if ((this.deviceList[i].LNG && this.deviceList[i].LAT) ||
-                  (this.deviceList[i].Longitude && this.deviceList[i].Latitude) ||
-                  (this.deviceList[i].lbsLongitude && this.deviceList[i].lbsLatitude)
-              ) {
-                let data = {
-                  lnglat: lnglatUtil.getLngLat(this.deviceList[i]),
-                  name: this.deviceList[i].NAME,
-                  id: i,
-                  uuid: this.deviceList[i].UUID,
-                  style: styleUtil.getStyle(this.deviceList[i])
-                }
-                this.lightMarkersData.push(data)
-              }
-            }
-          })
-        this.$axios
-          .post('/v_device_ebox/list', {where: {PROJECT: project.title}, size: 2000})
-          .then(response => {
-            this.deviceList = this.deviceList.concat(response.data.data.data)
-            this.showMarkers(this.componentType)
-          })
-        this.$axios
-          .post('/v_device_wiresafe/list', {where: {PROJECT: project.title}, size: 2000})
-          .then(response => {
-            this.deviceList = this.deviceList.concat(response.data.data.data)
-            this.showMarkers(this.componentType)
-          })
-        // this.realtimePowerChart.series[0].data = []
-        // this.realtimeIlluChart.series[0].data = []
-        // this.realtimeTempChart.series[0].data = []
-        // this.fetchStatsData()
+        markersLight.loadMarkers(this.amap, this.deviceList, project, this.indexedDeviceList, this.lightConnected, this.lightMarkersData, this.$EventBus, this.projects, this.projectSelectedIndex)
       } else {
 
       }
     },
-    showMarkers: function (type) {
-      this.amap.clearMap()
-      if (type === 'light') {
-        this.modultePartVisible = true
-        markersLight.loadMarkers(this.amap, this.deviceList)
-        this.projectMarks.hide()
+    zoomChange: function () {
+      let isZoom = false
+      if (this.amap.getZoom() <= 10) {
+        // this.massMarks ? this.massMarks.hide() : ''
+        this.projectMarks.show()
+      } else {
+        isZoom = true
       }
+      this.$EventBus.$emit('zoomchange', isZoom)
+    },
+    checkGranted: function (action) {
+      return securityUtil.checkGranted(action)
     }
   }
 }
@@ -229,7 +311,7 @@ export default {
   right: 0;
   position: absolute !important;
 }
-#modultePart{
+#modulePart{
   width: auto;
   height: auto;
   z-index: 999;

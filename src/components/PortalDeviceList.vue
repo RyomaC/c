@@ -25,7 +25,7 @@
                         ? selectedUUIDs[device.UUID]
                           ? ' selected'
                           : ' select'
-                        : single == device.UUID ? ' active' : ''
+                        : selectedUUIDs[device.UUID] ? ' active' : ''
                       ) ">
                 {{device.NAME}}
           </span>
@@ -39,12 +39,12 @@
 import {_} from 'underscore'
 
 export default {
-  props: ['deviceList', 'selectedUuidList', 'selectMode1', 'single1'], //, 'selectMode'
+  props: ['deviceList', 'selectedUUIDsProp', 'selectModeProp'],
   methods: {
     checkGroupSelectStatus (groupDevices, group) {
       let notAllSelected = false
       for (const device of groupDevices) {
-        if (!Object.keys(this.selectedUUIDs).includes(device.UUID)) {
+        if (!this.selectedUUIDs[device.UUID]) {
           notAllSelected = true
           break
         }
@@ -64,22 +64,20 @@ export default {
           this.$delete(this.selectedUUIDs, device.UUID)
         }
       }
-      this.$emit('itemsSelected', Object.keys(this.selectedUUIDs))
+      this.$emit('itemsSelected', this.selectedUUIDs)
       this.checkAllGroupSelectStatus()
     },
     toggleSelectMode (selectMode) {
-      this.single = 0
       this.selectMode = selectMode
       this.selectedUUIDs = {}
-      if (!this.selectMode) {
-        this.$emit('controlModeChange', false)
-      }
       this.$emit('controlModeChange', selectMode)
     },
     itemClicked (id) {
       if (!this.selectMode) {
-        this.single = id
+        this.selectedUUIDs = {}
+        this.$set(this.selectedUUIDs, id, 1)
         this.$emit('itemClicked', id)
+        this.$emit('itemsSelected', this.selectedUUIDs)
         return
       }
       if (this.selectedUUIDs[id]) {
@@ -87,7 +85,7 @@ export default {
       } else {
         this.$set(this.selectedUUIDs, id, 1)
       }
-      this.$emit('itemsSelected', Object.keys(this.selectedUUIDs))
+      this.$emit('itemsSelected', this.selectedUUIDs)
       this.checkAllGroupSelectStatus()
     }
   },
@@ -96,8 +94,7 @@ export default {
       devices: [],
       selectMode: false,
       selectedUUIDs: {},
-      groupNotAllSelected: {},
-      single: 0
+      groupNotAllSelected: {}
     }
   },
   watch: {
@@ -107,14 +104,12 @@ export default {
       this.devices = _.groupBy(this.devices, 'SUBGROUP')
       this.checkAllGroupSelectStatus()
     },
-    'selectedUuidList': function () {
-      this.selectedUUIDs = this.selectedUuidList
+    'selectedUUIDsProp': function () {
+      this.selectedUUIDs = this.selectedUUIDsProp
+      console.log('selectedUUIDs', this.selectedUUIDs)
     },
-    'selectMode1': function () {
-      this.selectMode = this.selectMode1
-    },
-    'single1': function () {
-      this.single = this.single1
+    'selectModeProp': function () {
+      this.selectMode = this.selectModeProp
     }
   }
 }

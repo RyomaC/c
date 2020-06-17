@@ -3,29 +3,29 @@
     <el-row :gutter="20">
       <el-col :xs="24" :sm="12" :md="6">
         <div class="grid-content bg-purple">
-          <span class="statsCircle">A</span><span class="statsTitle">单灯平均功率</span><span class="statsValue">{{parseFloat(statsData.totalActualPower).toFixed(2)}}</span>
+          <span class="statsCircle">A</span><span class="statsTitle">单灯平均功率(W)</span><span class="statsValue">{{parseFloat(statsData.totalActualPower).toFixed(2)}}</span>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="6">
         <div class="grid-content bg-purple">
-          <span class="statsCircle">E</span><span class="statsTitle">单灯额定功率</span><span class="statsValue">{{parseFloat(statsData.totalRatedPower).toFixed(2)}}</span>
+          <span class="statsCircle">E</span><span class="statsTitle">单灯额定功率(W)</span><span class="statsValue">{{parseFloat(statsData.totalRatedPower).toFixed(2)}}</span>
           </div>
         </el-col>
       <el-col :xs="24" :sm="12" :md="6">
         <div class="grid-content bg-purple">
-          <span class="statsCircle">Y</span><span class="statsTitle">年度节约</span><span class="statsValue">{{parseFloat(statsData.ecYear).toFixed(2)}}</span>
+          <span class="statsCircle">Y</span><span class="statsTitle">年度节约(KWH)</span><span class="statsValue">{{parseFloat(statsData.ecYear).toFixed(2)}}</span>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="6">
         <div class="grid-content bg-purple">
-          <span class="statsCircle">M</span><span class="statsTitle">月度节约</span><span class="statsValue">{{parseFloat(statsData.ecMonth).toFixed(2)}}</span>
+          <span class="statsCircle">M</span><span class="statsTitle">月度节约(KWH)</span><span class="statsValue">{{parseFloat(statsData.ecMonth).toFixed(2)}}</span>
         </div>
       </el-col>
     </el-row>
     <el-row :gutter="20">
       <el-col :xs="24" :sm="12" :md="12">
         <div class="grid-content bg-purple">
-          <div class="chartTitle">用电量</div>
+          <div class="chartTitle">用电量(KWH)</div>
           <ECharts style="width:95%;height:330px" :options="lineChartData" autoresize v-if="loaded"/>
         </div>
       </el-col>
@@ -45,19 +45,19 @@
     <el-row :gutter="20">
       <el-col :xs="24" :sm="12" :md="6">
         <div class="grid-content bg-purple">
-          <div class="chartTitle">平均功率</div>
+          <div class="chartTitle">平均功率(W)</div>
           <ECharts style="width:95%; height:130px" :options="powerData" autoresize v-if="loaded"/>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="6">
         <div class="grid-content bg-purple">
-          <div class="chartTitle">平均照度</div>
+          <div class="chartTitle">平均照度(LM)</div>
           <ECharts style="width:95%; height:130px" :options="illuData" autoresize v-if="loaded"/>
         </div>
       </el-col>
       <el-col :xs="24" :sm="12" :md="6">
         <div class="grid-content bg-purple">
-          <div class="chartTitle">平均温度</div>
+          <div class="chartTitle">平均温度(C)</div>
           <ECharts style="width:95%; height:130px" :options="tempData" autoresize v-if="loaded"/>
         </div>
       </el-col>

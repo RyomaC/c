@@ -164,7 +164,7 @@ html,body{
     transition:.2s;
     border-radius:0%;
     user-select:none;
-    /* background-image: url(/static/images/bookmark.png); */
+    background-image: url(/static/images/bookmark.png);
 }
 
 </style>

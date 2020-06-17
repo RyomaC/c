@@ -16,6 +16,7 @@
     "chart.js": "^2.8.0",
     "echarts": "^4.2.1",
     "element-ui": "^2.11.1",
+    "eventbusjs": "^0.2.0",
     "loadash": "^1.0.0",
     "underscore": "^1.9.1",
     "vue": "^2.6.10",

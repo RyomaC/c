@@ -181,7 +181,7 @@ export default {
   right: 15px;
   top: 30px;
   width: 250px;
-  height: 120px;
+  height: 90px;
   position: absolute;
   z-index: 800;
 }
