@@ -104,10 +104,6 @@ html,body{
 .el-menu :hover{
   background-color:rgb(47, 45, 161) !important;
 }
-.el-menu .is-active {
-   background-color: rgb(47, 45, 161) !important;
-   color:white !important;
-}
 .el-menu-item {
   color: white !important;
 }
@@ -166,5 +162,17 @@ html,body{
     user-select:none;
     background-image: url(/static/images/bookmark.png);
 }
-
+::-webkit-scrollbar {/*滚动条整体样式*/
+  width: 6px;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: #DBDBDB;
+}
+::-webkit-scrollbar-track {/*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
 </style>

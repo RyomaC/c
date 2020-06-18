@@ -117,7 +117,7 @@ export default {
 
 <style scoped>
 #devicelist {
-  height: 100%;
+  height: 92%;
   text-align: left;
   user-select: none;
 }

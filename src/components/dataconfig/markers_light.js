@@ -4,7 +4,7 @@ import axios from 'axios'
 import _ from 'underscore'
 
 export default {
-  loadMarkers (amap, deviceList, project, indexedDeviceList, lightConnected, lightMarkersData, EventBus, projects, projectSelectedIndex) {
+  loadMarkers (amap, deviceList, project, indexedDeviceList, lightConnected, lightMarkersData, EventBus) {
     axios
       .post('/v_device_lamp/list', {where: {PROJECT: project.title}, size: 2000})
       .then(response => {
@@ -12,7 +12,7 @@ export default {
         indexedDeviceList = _.indexBy(deviceList, 'UUID')
         EventBus.$emit('getindexedDeviceList', indexedDeviceList)
         lightConnected = _.filter(deviceList, {TYPE: 2, STATE: 1}).length
-        showMarkers(amap, deviceList, EventBus, projects, projectSelectedIndex)
+        showMarkers(amap, deviceList, EventBus)
         for (let i = 0; i < deviceList.length; i++) {
           if ((deviceList[i].LNG && deviceList[i].LAT) ||
               (deviceList[i].Longitude && deviceList[i].Latitude) ||
@@ -33,22 +33,19 @@ export default {
       .post('/v_device_ebox/list', {where: {PROJECT: project.title}, size: 2000})
       .then(response => {
         deviceList = deviceList.concat(response.data.data.data)
-        showMarkers(amap, deviceList, EventBus, projects, projectSelectedIndex)
+        showMarkers(amap, deviceList, EventBus)
       })
     axios
       .post('/v_device_wiresafe/list', {where: {PROJECT: project.title}, size: 2000})
       .then(response => {
         deviceList = deviceList.concat(response.data.data.data)
-        showMarkers(amap, deviceList, EventBus, projects, projectSelectedIndex)
+        showMarkers(amap, deviceList, EventBus)
       })
-    // this.fetchStatsData()
   }
 }
 
-function showMarkers (amap, deviceList, EventBus, projects, projectSelectedIndex) {
+function showMarkers (amap, deviceList, EventBus) {
   EventBus.$emit('fetchStatsData', deviceList)
-  EventBus.$emit('getprojects', projects)
-  EventBus.$emit('getprojectSelectedIndex', projectSelectedIndex)
   const iconSize = 26
   const style = [
     '/static/images/light_on.png',

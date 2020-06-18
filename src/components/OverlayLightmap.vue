@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-left:140px;">
+    <div style="height:100%;margin-left:140px;">
         <div id="debugInfoContainer" v-show="debugInfoVisible">
           <div>{{focusDeviceData.NAME}}</div>
           <div>{{focusDeviceData.Warning_state && focusDeviceData.Warning_state > 0 ? focusDeviceData.Warning_state : ''}}&nbsp;
@@ -56,28 +56,15 @@
             <div style="text-align:right; margin-right:10px;"><el-button icon="el-icon-close" type="text" @click="hideDetail"/></div>
             <DataItem ref="dataItem" :data_id="currentDeviceID" :data_action="currentAction" :data_type="deviceType" :data="currentData" @hideItem="hideDetail" @itemUpdated="reloadProject"/>
         </div>
-        <vue-resizable  ref="resizableComponent"
-          :dragSelector="dragSelector"
-          :fit-parent="true"
-          :active=[]
-          :width="450"
-          :height="740"
-          :left="left1"
-          :top="100"
-          @drag:move="eHandler"
-          @drag:start="eHandler"
-          @drag:end="eHandler"
-          id="deviceControlContainer"
-          v-if="deviceControlVisible && !infoContainerVisible"
-        >
-            <div style="text-align:right; margin-right:10px;" class="resizable" ><el-button icon="el-icon-close" type="text" @click="hideDetail"/></div>
+        <div id="deviceControlContainer" v-if="deviceControlVisible && !infoContainerVisible">
+          <div style="text-align:right; margin-right:10px;"><el-button icon="el-icon-close" type="text" @click="hideDetail"/></div>
             <DeviceControl :uuids="Object.keys(selectedUUIDs)" :project="projects[projectSelectedIndex]" v-show="deviceControlVisible"/>
-        </vue-resizable>
+        </div>
         <div id="statsContainer" v-if="statsVisible">
           <!-- <component v-bind:is="portalComponent" /> -->
           <Portal :project="projects[projectSelectedIndex]" :statsData="statsData"/>
         </div>
-      </div>
+    </div>
 </template>
 
 <script>
@@ -88,7 +75,6 @@ import PortalDeviceList from '@/components/PortalDeviceList'
 import DeviceControl from '@/components/DeviceControl'
 import _ from 'underscore'
 import moment from 'moment'
-import VueResizable from 'vue-resizable'
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
@@ -100,7 +86,7 @@ import warningStateUtil from '@/utils/warningStateUtil'
 import Bus from '@/utils/bus.js'
 
 export default {
-  components: {DataList, DataItem, PortalDeviceList, DeviceControl, Portal, ECharts, VueResizable},
+  components: {DataList, DataItem, PortalDeviceList, DeviceControl, Portal, ECharts},
   data: function () {
     return {
       isDraw: false,
@@ -135,15 +121,7 @@ export default {
       deviceListVisible: false,
       deviceControlVisible: false,
       infoContainerVisible: false,
-      chooseVisible: false,
-      width: 0,
-      height: 0,
-      x: 0,
-      y: 0,
-      left: 0,
-      left1: 'calc( 100% - 400px)',
-      top: 0,
-      dragSelector: '.resizable'
+      chooseVisible: false
     }
   },
   mounted: function () {
@@ -224,6 +202,22 @@ export default {
       this.newItem(index.paramLnglat, index.paramItem)
     })
 
+    this.$EventBus.$on('hidemodule', index => {
+      this.statsVisible = false
+      this.deviceListVisible = false
+      this.deviceControlVisible = false
+    })
+
+    this.$EventBus.$on('hidedetail', index => {
+      this.infoContainerVisible = false
+      this.deviceControlVisible = false
+      this.deviceListVisible = false
+      this.selectMode = false
+      this.chooseVisible = false
+      this.selectedUUIDs = {}
+      this.reloadMassMarkersStyle()
+    })
+
     this.$EventBus.$on('onMassMarksClick', e => {
       if (e.data.type === 2) {
         this.deviceControlVisible = this.selectMode
@@ -276,21 +270,20 @@ export default {
     zoomOut: function () {
       this.$EventBus.$emit('hidemarker', 1)
       this.$EventBus.$emit('setCenterZoom', 1)
+      this.$EventBus.$emit('hideMenu', 1)
       this.deviceListVisible = false
       this.deviceControlVisible = false
       this.infoContainerVisible = false
       this.statsVisible = false
-      this.listVisible = false
+      this.$EventBus.$emit('listVisible', 1)
     },
     hideDetail: function () {
-      this.leftSideVisible = true
+      this.$EventBus.$emit('hidedetail1', 1)
       this.infoContainerVisible = false
       this.deviceControlVisible = false
       this.deviceListVisible = false
-      this.listVisible = false
       this.selectMode = false
       this.chooseVisible = false
-      this.isBack = 0
       this.selectedUUIDs = {}
       this.reloadMassMarkersStyle()
     },
@@ -369,7 +362,6 @@ export default {
       const currenttime = moment().format('HH:mm')
       const timemark = today.diff(yesterday, 'minute')
       this.cuTime = timemark
-      // console.log(timemark)
       marks[timemark] = {
         style: {
           color: 'red'
@@ -391,7 +383,7 @@ export default {
       }
     },
     toggleStats () {
-      this.listVisible = false
+      this.$EventBus.$emit('listVisible', 1)
       this.$EventBus.$emit('hidemarker', 1)
       this.statsVisible = !this.statsVisible
       if (!this.portalComponent) this.portalComponent = () => import('@/components/Portal')
@@ -435,14 +427,14 @@ export default {
       this.infoContainerVisible = true
     },
     toggleDeviceList () {
-      this.$EventBus.$emit('hidemarker', 1)
       this.selectMode = false
-      this.$EventBus.$emit('closeMouseTool', 1)
       this.chooseVisible = false
-      this.listVisible = false
       this.deviceControlVisible = false
       this.infoContainerVisible = false
       this.statsVisible = false
+      this.$EventBus.$emit('hidemarker', 1)
+      this.$EventBus.$emit('closeMouseTool', 1)
+      this.$EventBus.$emit('listVisible', 1)
       this.deviceListVisible = !this.deviceListVisible
       this.selectedUUIDs = {}
       this.reloadMassMarkersStyle()
@@ -544,12 +536,6 @@ export default {
       this.chooseVisible = selectMode
       this.isDraw = !selectMode
       this.reloadMassMarkersStyle()
-    },
-    eHandler (width, height, left, top) {
-      this.width = width
-      this.height = height
-      this.left = left
-      this.top = top
     }
   },
   computed: {
@@ -608,8 +594,6 @@ export default {
   position: absolute;
   z-index: 1000;
   padding: 10px;
-  /* overflow-y:auto;
-  overflow-x:hidden; */
 }
 #statsContainer {
   background-color: rgb(29, 32, 41);
@@ -636,8 +620,6 @@ export default {
   height: 88%;
   position: absolute;
   z-index: 9999;
-  /* overflow-y:auto; */
-  /* overflow-x:hidden; */
 }
 #infoContainer, #deviceControlContainer{
   background-color: rgba(12, 27, 78, 0.9);
@@ -650,8 +632,9 @@ export default {
   position: absolute;
   z-index: 999;
   height: 86%;
-  /* overflow-y:auto;
-  overflow-x:hidden; */
+}
+.resizable{
+  cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {

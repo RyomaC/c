@@ -1,9 +1,9 @@
 <template>
-  <div id="datalist" :class="$route.params.datatype" style="height:100%; ">
+  <div id="datalist" :class="datatype" style="height:100%; ">
     <div id="searchBar" style="text-align:left; ">
       <span class="searchBarFields" v-for="(field, index) in searchConfigFields" :key="index">
-        {{field.title}}
-        <el-select v-model="searchFields[field.name]" clearable v-if="field.editType=='select'">
+        <span v-if="field.editType!='select' && field.name != 'TYPE'">{{field.title}}</span>
+        <el-select v-model="searchFields[field.name]" clearable v-if="field.editType=='select'" v-show="selectVisible">
           <el-option
             v-for="item in dataFieldsOptions[field.name]"
             :key="item"
@@ -11,29 +11,33 @@
             :value="item">
           </el-option>
         </el-select>
-        <el-input style="width:200px" v-model="searchFields[field.name]" v-else/>
+        <el-input style="width:200px" v-model="searchFields[field.name]" v-show="field.name != 'TYPE'" v-else/>
       </span>
       <el-button type="primary" icon="el-icon-search" @click.native="searchData"></el-button>
+      <el-button type="primary" icon="el-icon-download" @click="downloadItem()"></el-button>
     </div>
     <!-- <div id="actionBar" style="text-align:left;height:50px;" >
       <el-button type="primary" icon="el-icon-plus" @click="newItem()"></el-button>
     </div> -->
+    <div v-show="tableData.count <= 0" style="clear:both;color:white;"><br/>无数据</div>
     <el-table
       :header-cell-style="{background:'#020288', color:'white'}"
       :row-style="{color:'#fff'}"
       :header-row-style="(r, i) => {return 'background-color:transparent; color:#fff;'}"
       :data="tableData.data"
+      style="margin-bottom: 5%;"
+      v-show="tableData.count > 0"
       >
       <el-table-column width="80px" fixed>
         <template slot-scope="scope" slot="header">
-          <el-button type="primary" icon="el-icon-plus" @click="newItem()" v-if="checkGranted($route.params.datatype + '/new')"></el-button>
+          <el-button type="primary" icon="el-icon-plus" @click="newItem()" v-if="checkGranted(datatype + '/new')"></el-button>
         </template>
         <template slot-scope="scope">
           <el-button type="text" @click='viewItem(scope.row._id, tableData.data[scope.$index])'  icon="el-icon-document" />
-          <el-button type="text" @click='deleteItem(scope.row._id )' v-if="checkGranted($route.params.datatype + '/delete')"  icon="el-icon-delete" />
+          <el-button type="text" @click='deleteItem(scope.row._id )' v-if="checkGranted(datatype + '/delete')"  icon="el-icon-delete" />
         </template>
       </el-table-column>
-      <el-table-column v-for="(field,index) in dataFields" :key="index" :label="field.title" :width="field.width" :fixed="index<1">
+      <el-table-column v-for="(field,index) in dataFields" :key="index" :label="field.title" :width="field.width" :fixed="index<1" id="dtable">
         <template slot-scope="scope">
           {{field.editType=='datetime' ? getDisplayDateTime(scope.row[field.name]) : scope.row[field.name]}}
         </template>
@@ -53,8 +57,8 @@
       </el-pagination>
     </div>
     <el-drawer custom-class="drawer" :visible.sync="drawerVisible" :size="drawerSize">
-      <div v-show="itemDetailContainerVisible" class="drawer">
-        <DataItem ref="dataItem" :data_type="$route.params.datatype" :data_id="selectedID" :data_action="action" :data="data" :visible="itemDetailContainerVisible" @hideItem="hideItem" @itemUpdated="fetchData"/>
+      <div v-if="itemDetailContainerVisible" class="drawer">
+        <DataItem ref="dataItem" :data_type="datatype" :data_id="selectedID" :data_action="action" :data="data" :visible="itemDetailContainerVisible" @hideItem="hideItem" @itemUpdated="fetchData"/>
       </div>
     </el-drawer>
 
@@ -66,9 +70,11 @@ import DataItem from '@/components/DataItem'
 import {_} from 'underscore'
 import moment from 'moment'
 import securityUtil from '@/utils/securityUtil.js'
+import XLSX from 'xlsx'
 
 export default {
   components: { DataItem },
+  props: ['datatype', 'defaultData'],
   methods: {
     getDisplayDateTime (ts) {
       return ts ? moment(ts).format('YYYY-MM-DD HH:mm:ss') : ''
@@ -79,10 +85,14 @@ export default {
     handlePageChange: function (val) {
       this.page = val
       this.fetchData()
+      // eslint-disable-next-line no-undef
+      datalist.scrollIntoView()
     },
     handleSizeChange (val) {
       this.size = val
       this.fetchData(val)
+      // eslint-disable-next-line no-undef
+      datalist.scrollIntoView()
     },
     searchData: function () {
       this.page = 1
@@ -99,7 +109,7 @@ export default {
       this.error = null
       this.itemDetailContainerVisible = false
       this.selectedID = ''
-      this.data = {}
+      this.data = this.defaultData || {}
     },
     deleteItem: function (id) {
       this.$confirm('确定要删除?', '警告', {
@@ -108,7 +118,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$axios
-          .get('/' + this.$route.params.datatype + '/delete/' + id)
+          .get('/' + this.datatype + '/delete/' + id)
           .then(response => {
             this.$message({
               message: '删除成功',
@@ -116,6 +126,7 @@ export default {
             })
             this.fetchData()
           })
+          // eslint-disable-next-line handle-callback-err
           .catch(err => {
             this.$message({
               message: '删除失败',
@@ -127,7 +138,7 @@ export default {
     },
     newItem: function () {
       this.selectedID = -Date.now()
-      this.data = {}
+      this.data = this.defaultData || {}
       this.action = 'new'
       this.drawerVisible = true
       this.itemDetailContainerVisible = true
@@ -144,7 +155,8 @@ export default {
       this.drawerVisible = false
     },
     fetchData: function () {
-      let config = require('./dataconfig/' + this.$route.params.datatype + '.json')
+      console.log(this.datatype)
+      let config = require('./dataconfig/' + this.datatype + '.json')
       this.dataFields = config.fields.filter(e => { return !e.hidden })
       if (!this.size) {
         this.size = config.pageSize || 10
@@ -153,7 +165,7 @@ export default {
         config.searchFields, (field) => {
           let fieldConfig = _.find(this.dataFields, {name: field})
           if (fieldConfig.editType === 'select' || fieldConfig.editType === 'checkbox') {
-            // this.$axios.post('/' + this.$route.params.datatype + '/select_' + fieldConfig.option)
+            // this.$axios.post('/' + this.datatype + '/select_' + fieldConfig.option)
             this.$axios.post('/sys_dict/select_' + fieldConfig.option)
               .then(response => {
                 this.dataFieldsOptions[field] = response.data.data
@@ -163,7 +175,13 @@ export default {
           return fieldConfig
         }
       )
-      this.where = {}
+      //this.where['PROJECT'] = this.projectName
+      console.log(this.searchFields)
+      _.each(this.defaultData, (v, k) => {
+        if (v !== '') {
+          this.where[k] = v
+        }
+      })
       _.each(this.searchFields, (v, k) => {
         if (v !== '') {
           // this.where[k] = {"$regex": ".*" + v +".*"};
@@ -171,7 +189,7 @@ export default {
         }
       })
       this.$axios
-        .post('/' + this.$route.params.datatype + '/list', {
+        .post('/' + this.datatype + '/list', {
           page: this.page,
           order: config.order,
           size: this.size,
@@ -185,6 +203,51 @@ export default {
             this.$router.replace('/error403')
           }
         })
+    },
+    downloadItem: function () {
+      let exportData = []
+      let header = []
+      const config = require('./dataconfig/' + this.datatype + '.json')
+      this.dataFields = config.fields.filter(e => { return !e.hidden })
+      for (const field of this.dataFields) {
+        header.push(field.title)
+      }
+      exportData.push(header)
+      this.$axios
+        .post('/' + this.datatype + '/list', {
+          page: this.page,
+          order: config.order,
+          size: this.tableData.count,
+          where: this.where
+        })
+        .then(response => {
+          this.responsedata = response.data.data.data
+          for (const row of this.responsedata) {
+            let exportRow = []
+            for (const field of this.dataFields) {
+              if (field.name === 'ts') {
+                row[field.name] = this.timestampToTime(row[field.name])
+              }
+              exportRow.push(row[field.name] || '')
+            }
+            exportData.push(exportRow)
+          }
+          console.log(exportData)
+          this.outputXlsxFile(exportData, this.datatype)
+        })
+        .catch(e => {
+          // if (e.response.status === 403) {
+          //   this.$router.replace('/error403')
+          // }
+        })
+    },
+    outputXlsxFile: function (data, xlsxName) {
+      const ws = XLSX.utils.aoa_to_sheet(data)
+      // ws['!cols'] = wscols
+      const wb = XLSX.utils.book_new()
+      XLSX.utils.book_append_sheet(wb, ws, xlsxName)
+
+      XLSX.writeFile(wb, xlsxName + '.xlsx')
     }
   },
   data: function () {
@@ -202,14 +265,15 @@ export default {
       action: '',
       data: {},
       drawerVisible: false,
-      drawerSize: '50'
+      drawerSize: '50',
+      selectVisible: false
     }
   },
   mounted: function () {
     this.fetchData()
   },
   watch: {
-    '$route': function () {
+    datatype: function () {
       this.resetData()
       this.fetchData()
     }
@@ -224,6 +288,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  overflow-y: scroll;
+  background: #0E2A43;
+  height: calc(100% - 30px) !important;
 }
 #searchBar{
   float: left;
@@ -245,5 +312,11 @@ export default {
     display: none;
   }
 }
-
+.block{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 3.4%;
+    z-index: 999;
+}
 </style>

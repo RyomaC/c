@@ -36,6 +36,7 @@ export default {
       a: false,
       b: false,
       marker: null,
+      marker_aa: null,
       projectMarkersData: [],
       projects: [],
       projectMarks: null,
@@ -66,9 +67,14 @@ export default {
       this.marker.setPosition([index.LNG, index.LAT])
       this.marker.setLabel({content: index.NAME})
       this.marker.show()
+      this.marker_aa.setPosition([index.LNG, index.LAT])
+      this.marker_aa.setLabel({content: index.NAME})
+      this.marker_aa.show()
+      console.log(this.marker_aa)
     })
     this.$EventBus.$on('hidemarker', (index) => {
-      this.marker.hide()
+      console.log(this.marker_aa)
+      this.marker_aa.hide()
     })
     this.$EventBus.$on('reloadmarkers', (index) => {
       this.deviceList = []
@@ -85,6 +91,9 @@ export default {
     this.$EventBus.$on('setZoom', (index) => {
       this.amap.panTo([index.LNG, index.LAT])
       this.amap.setZoom(18)
+    })
+    this.$EventBus.$on('hideMenu', (index) => {
+      this.modulePartVisible = false
     })
     this.$EventBus.$on('drawRectangle', (index) => {
       const overlays = []
@@ -178,6 +187,7 @@ export default {
 
       this.amap.on('zoomchange', this.zoomChange)
       this.marker = new AMap.Marker({content: ' ', map: this.amap})
+      this.marker_aa = new AMap.Marker({content: ' ', map: this.amap})
       this.$axios
         .post('/project/list', {size: 2000})
         .then(response => {
@@ -291,6 +301,7 @@ export default {
       if (this.amap.getZoom() <= 10) {
         // this.massMarks ? this.massMarks.hide() : ''
         this.projectMarks.show()
+        this.modulePartVisible = false
       } else {
         isZoom = true
       }
