@@ -18,7 +18,7 @@
     "element-ui": "^2.11.1",
     "eventbusjs": "^0.2.0",
     "loadash": "^1.0.0",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "vue": "^2.6.10",
     "vue-amap": "^0.5.10",
     "vue-awesome-swiper": "^3.1.3",
