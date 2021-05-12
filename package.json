@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "echarts": "^4.2.1",
     "element-ui": "^2.11.1",
     "eventbusjs": "^0.2.0",
